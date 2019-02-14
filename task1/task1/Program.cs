@@ -1,43 +1,50 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace task1                 
+namespace ConsoleApp1
 {
     class Program
     {
+        static public bool Prime(int b) // Function, which determine the prime number
+        {
+            if (b == 1) return false;
+
+            for (int i = 2; i < b; i++)
+            {
+                if (b % i == 0) return false;// if the number will have reminder 0, when it divide to number between 2 and b, it is false 
+            }
+            return true;
+
+
+        }
         static void Main(string[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());//Convert string into int
-            string[] s = Console.ReadLine().Split();//read the line as a string and split it be space
-            int[] a = new int[n];//create a new array with integers
-            for (int i = 0; i < n; i++)
+            int n = Convert.ToInt32(Console.ReadLine());// Insert string and convert to int
+            int[] a = new int[n]; // Create massive
+            int cnt = 0; // counter equal to 0
+            for (int i = 0; i < n; i++) //cycle to fill massive             
             {
-                a[i] = Convert.ToInt32(s[i]);
-            }//this cycle need to place string into array
-            int prime = 0;//size of new array with integers
-            int[] ans = new int[n];//new array for prime numbers
-            for (int i = 0; i < n; i++)
+                int b = Convert.ToInt32(Console.ReadLine());
+                a[i] = b;
+            }
+            for (int i = 0; i < n; i++) //if it is a prime number, counter increase to 1 and show these numbers
             {
-                int del = 0;//counter for divider
-                for (int j = 1; j <= a[i]; j++)
+                if (Prime(a[i]))
                 {
-                    if (a[i] % j == 0)
-                    del++;
-                }
-                if (del == 2)
-                {
-                    ans[prime] = a[i];
-                    prime++;
+                    cnt++;// the number of prime numbers
                 }
             }
-            Console.WriteLine(prime);
-            for (int i = 0; i < prime; i++)
-                Console.Write(ans[i] + " ");
-            
-
+            Console.WriteLine(cnt);
+            for (int i = 0; i < n; i++)
+            {
+                if (Prime(a[i]))
+                {
+                    Console.Write(a[i] + " ");// the prime numbers
+                }
+            }
         }
     }
 }
